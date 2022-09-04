@@ -1,0 +1,25 @@
+class Solution {
+    public boolean checkDistances(String s, int[] distance) {
+        HashMap<Character,Integer> map = new HashMap<>();
+        int len = s.length();
+         char alpha = 'a';
+        for(int i=0;i<distance.length;i++){
+            map.put(alpha,distance[i]);
+            alpha++;
+            // System.out.println(alpha);
+            // System.out.println( map.get(s.charAt(i)));
+        }
+       for(int i = 0; i<len;i++){
+           //System.out.println(map.get(s.charAt(3)));
+           int data = map.get(s.charAt(i));
+           int pos =Math.abs(i-data-1);
+           System.out.println(pos);
+           System.out.println(s.charAt(i));
+           System.out.println(s.charAt(pos));
+           System.out.println(s.charAt(i)==s.charAt(i+data+1));
+           if(!(s.charAt(i)==s.charAt(i+data+1)||s.charAt(i)==s.charAt(pos)))
+               return false;
+       }
+        return true;
+    }
+}
