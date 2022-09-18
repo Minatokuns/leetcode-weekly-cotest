@@ -1,0 +1,20 @@
+class Solution {
+    public int[] sumPrefixScores(String[] words) {
+        Hashmap<String,String> map = new Map<>();
+        for(int i =0;i<words.length;i++){
+            while(int j =0 < words[i].length){
+                String s = substr(j,words[i]);
+                map.put(s,map.getOrDefault(s,0)+1);
+            }
+        }
+        int ans[] = new int[words.length];
+         for(int i =0;i<words.length;i++){
+             int sum = 0;
+            while(int j =0 < words[i].length){
+                String s = substr(j,words[i]);
+                sum = sum + map.get(s);
+            }
+             ans[i] = sum;
+         }
+    }
+}
