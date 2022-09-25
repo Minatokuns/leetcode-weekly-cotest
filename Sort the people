@@ -1,0 +1,19 @@
+class Solution {
+    public String[] sortPeople(String[] names, int[] heights) {
+         int len = names.length;
+//         storing height with there respective name
+        HashMap<Integer,String> map = new HashMap<>();
+        for(int i = 0 ; i<len;i++){
+            map.put(heights[i],names[i]);
+        }
+         int starting = 0; 
+// sorting the array in ascending order
+        Arrays.sort(heights);
+//retriving the names basis of sorted height and overwriting the array name
+        for(int i = len-1;i>=0;i--){
+            String des = map.get(heights[i]);
+            names[starting++] = des;
+        }
+        return names;
+    }
+}
