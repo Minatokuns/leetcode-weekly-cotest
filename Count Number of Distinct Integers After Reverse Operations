@@ -1,0 +1,23 @@
+class Solution {
+    public int countDistinctIntegers(int[] nums) {
+        int orilen = nums.length;
+        int newlen = nums.length;
+         int[] news = Arrays.copyOf(nums, 2 *orilen); 
+      for(int i = 0; i<orilen;i++){
+       int number = news[i];
+          int reverse = 0;  
+        while(number != 0)   
+        {  
+        int remainder = number % 10;  
+        reverse = reverse * 10 + remainder;  
+        number = number/10;  
+        } 
+          news[newlen++] = reverse;
+      } 
+        HashSet<Integer> hm = new HashSet<>();
+        for(int i = 0 ; i<news.length;i++){
+            hm.add(news[i]);
+        }
+        return hm.size();
+    }
+}
