@@ -1,0 +1,39 @@
+class Solution {
+    static int gcd(int a, int b)
+    {
+        if (a == 0)
+            return b;
+        return gcd(b % a, a);
+    }
+    static int lcm(int a, int b)
+    {
+        return (a / gcd(a, b)) * b;
+    }
+    public int subarrayLCM(int[] nums, int k) {
+        int count = 0;
+        int start = 0;
+        //using sliding window so start will always be same if lcm is matching 
+        while(start<nums.length){
+            int curr = nums[start];
+        // as the no. itself can be equal to k(edge case for me)
+            if(curr==k)
+                count++;
+        //creating subarray until lcm is wrong(if start is last element it wont work so its fine)
+        for(int j = start+1;j<nums.length;j++){
+            int lcm = lcm(curr,nums[j]);
+        //if lcm is matched we continue the subarray by setting the curr = to the lcm of elemnts(as lcm is fo 2 no.)
+        if(lcm == k ){
+            count++;
+            curr = lcm;
+        }
+        //edge case 1 doest effect the lcm so if its 1 we include it in the subarray 1 1 5 ,k = 5 ...count  =3 (as 1 1 5, 1 5, 5 is all valid)
+        else if(lcm == 1)
+            curr = lcm;
+        else
+            break;
+    }
+            start++;
+        }
+        return count;
+    }
+}
